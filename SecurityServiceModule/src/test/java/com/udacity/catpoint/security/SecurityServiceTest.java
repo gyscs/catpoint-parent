@@ -3,6 +3,7 @@ package com.udacity.catpoint.security;
 import com.udacity.catpoint.security.data.SensorType;
 import com.udacity.catpoint.security.data.AlarmStatus;
 import com.udacity.catpoint.security.data.*;
+import com.udacity.catpoint.security.service.SecurityService;
 import com.udacity.catpoint.service.ImageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

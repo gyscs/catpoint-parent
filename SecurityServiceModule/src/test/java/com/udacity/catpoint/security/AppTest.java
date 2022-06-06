@@ -1,6 +1,6 @@
 //package com.udacity.catpoint;
 //
-//import com.udacity.catpoint.security.SecurityService;
+//import com.udacity.catpoint.security.service.SecurityService;
 //import com.udacity.catpoint.security.data.*;
 //import com.udacity.catpoint.service.ImageService;
 //import com.udacity.catpoint.security.data.SecurityRepository;
