@@ -141,13 +141,25 @@ public class SecurityServiceTest {
         securityRepository.getSensors().forEach(sensor -> assertFalse(sensor.getActive()));
     }
 
+//    // case 11
+//    @Test
+//    public void armedHome_showsCat_setToAlarm() {
+//        Mockito.when(securityRepository.getArmingStatus()).thenReturn(ArmingStatus.ARMED_HOME);
+//        BufferedImage catImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+//        Mockito.when(imageService.imageContainsCat(catImage, 50.0f)).thenReturn(true);
+//        securityService.processImage(catImage);
+//        Mockito.verify(securityRepository).setAlarmStatus(AlarmStatus.ALARM);
+//    }
+
     // case 11
-    @Test
-    public void armedHome_showsCat_setToAlarm() {
-        Mockito.when(securityRepository.getArmingStatus()).thenReturn(ArmingStatus.ARMED_HOME);
+    @ParameterizedTest
+    @EnumSource(value = ArmingStatus.class, names = {"DISARMED", "ARMED_AWAY"})
+    public void disarmedOrArmedAway_detectCat_armedAndAlarm(ArmingStatus status) {
+        Mockito.when(securityRepository.getArmingStatus()).thenReturn(status);
         BufferedImage catImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         Mockito.when(imageService.imageContainsCat(catImage, 50.0f)).thenReturn(true);
         securityService.processImage(catImage);
+        securityService.setArmingStatus(ArmingStatus.ARMED_HOME);
         Mockito.verify(securityRepository).setAlarmStatus(AlarmStatus.ALARM);
     }
 
